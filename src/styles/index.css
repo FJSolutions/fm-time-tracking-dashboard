@@ -1,0 +1,251 @@
+:root {
+  /*color-scheme: light dark;*/
+
+  --orange-300: hsl(15, 100%, 70%); /* (work) */
+  --purple-500: hsl(235, 45%, 61%);
+  --purple-600: hsl(246, 80%, 60%);
+  --purple-700: hsl(264, 64%, 52%); /*(social): */
+  --blue-300: hsl(195, 74%, 62%); /* (play) */
+  --navy-200: hsl(236, 100%, 87%);
+  --navy-800: hsl(235, 46%, 40%);
+  --navy-900: hsl(235, 46%, 20%);
+  --navy-950: hsl(226, 43%, 10%);
+  --pink-400: hsl(348, 100%, 68%); /* (study) */
+  --green-400: hsl(145, 58%, 55%); /*(exercise): */
+  --yellow-300: hsl(43, 84%, 65%); /*(self care) */
+
+  --font-normal: 300;
+  --font-bolder: 400;
+  --font-bold: 500;
+
+  --screen-sm-min: 64em;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  font-family: Rubik, sans-serif;
+  font-weight: var(--font-normal);
+  background-color: var(--navy-950);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  display: grid;
+  gap: 2em;
+  margin: 5em auto;
+  padding: 2rem;
+  max-width: 60em;
+}
+
+.card {
+  position: relative;
+  color: var(--navy-200);
+  border-radius: 1em;
+  overflow: hidden;
+  border: none;
+
+  ul {
+    list-style: none;
+  }
+
+  picture {
+    position: absolute;
+    z-index: -1;
+    display: block;
+    overflow: hidden;
+    width: 100%;
+    text-align: end;
+    height: 5em;
+    margin-top: -0.6em;
+    padding-right: 1em;
+  }
+}
+
+.author-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--navy-900);
+
+  section {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    background-color: var(--purple-600);
+    border-radius: 1em;
+    padding: 1.3em 0.7em;
+
+    h1 {
+      font-size: 0.9em;
+      font-weight: normal;
+
+      .name {
+        font-size: 1.8em;
+        font-weight: var(--font-bolder);
+      }
+    }
+
+    img {
+      height: 4em;
+      width: 4em;
+      border-radius: 50%;
+      border: solid 0.3em var(--navy-200);
+      margin: 0.75em;
+    }
+  }
+
+  ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    justify-items: center;
+    padding: 1.5em 0;
+    margin: 0;
+    font-size: 1.1em;
+    gap: 1em;
+
+    .active {
+      font-weight: bold;
+    }
+
+    li {
+      cursor: pointer;
+    }
+
+    li:hover {
+      font-weight: bold;
+    }
+  }
+}
+
+
+.time-card {
+  display: grid;
+  grid-template-areas: "time-title time-ellipsis" "time-current time-previous";
+  align-items: center;
+  gap: 0.5em;
+  background-color: var(--navy-900);
+  border-radius: 1em;
+  border: none;
+  margin-top: 2em;
+  padding: 1.5em;
+
+  &:hover {
+    background-color: var(--navy-800);
+  }
+
+  .time-title {
+    font-size: 0.9em;
+    font-weight: var(--font-bolder);
+    grid-area: time-title;
+  }
+
+  .time-ellipsis {
+    grid-area: time-ellipsis;
+    justify-self: end;
+
+    img {
+      height: 0.2em;
+      width: 1em;
+    }
+
+    img:hover {
+      transform: scale(1.2);
+    }
+  }
+
+  .time-current {
+    grid-area: time-current;
+    font-size: 1.5em;
+  }
+
+  .time-previous {
+    grid-area: time-previous;
+    justify-self: end;
+    align-self: center;
+    font-size: 0.75em;
+  }
+}
+
+/* Mobile screens [432px] */
+@media screen and (width < 27em) {
+  main {
+    grid-template-columns: auto;
+    grid-template-rows: repeat(7, auto);
+    width: 100%;
+    margin: 2em auto;
+  }
+}
+
+/* Tablet (portrait) [432px] */
+@media screen and (min-width: 27em) {
+  main {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(4, auto);
+
+    .author-card {
+      grid-row: 1/2;
+      grid-column: 1/-1;
+    }
+  }
+}
+
+
+/*  Desktop & Tablet (landscape) [1024px] */
+@media screen and (min-width: 64em) {
+  main {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+
+    .author-card {
+      grid-row: 1/-1;
+      grid-column: 1/2;
+
+      h1 p:first-child {
+        font-size: 0.8em;
+      }
+
+      section {
+        flex-direction: column;
+        align-items: start;
+        padding: 1.5em;
+
+        img {
+          padding: 0;
+          margin: 0 0 1.5em 0;
+        }
+      }
+
+      ul {
+        grid-template-columns: auto;
+        grid-template-rows: 1fr 1fr 1fr;
+        justify-items: start;
+        gap: 1em;
+        margin: 1.5em;
+        padding: 0;
+        font-size: 0.75em;
+      }
+    }
+
+    .time-card {
+      grid-template-areas: "time-title time-ellipsis" "time-current time-current" "time-previous time-previous";
+
+      .time-current {
+        font-size: 2em;
+      }
+
+      .time-previous {
+        justify-self: stretch;
+      }
+    }
+  }
+}
